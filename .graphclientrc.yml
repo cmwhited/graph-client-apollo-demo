@@ -1,0 +1,37 @@
+sources:
+  - name: Network
+    handler:
+      graphql:
+        endpoint: https://api.thegraph.com/subgraphs/name/graphprotocol/{context.network:graph-network-mainnet}
+    transforms:
+      - prefix:
+          value: NETWORK__
+          includeRootOperations: true
+  - name: Analytics
+    handler:
+      graphql:
+        endpoint: https://api.thegraph.com/subgraphs/name/graphprotocol/{context.analytics:graph-network-analytics}
+    transforms:
+      - prefix:
+          value: ANALYTICS__
+          includeRootOperations: true
+  - name: ENS
+    handler:
+      graphql:
+        endpoint: https://api.thegraph.com/subgraphs/name/{context.ens:ensdomains/ens}
+    transforms:
+      - prefix:
+          value: ENS__
+          includeRootOperations: true
+  - name: Billing
+    handler:
+      graphql:
+        endpoint: https://api.thegraph.com/subgraphs/name/graphprotocol/{context.billing:billing}
+    transforms:
+      - prefix:
+          value: BILLING__
+          includeRootOperations: true
+
+# define the additional context props that support the network-specific subgraphs
+codegen:
+  contextType: "MeshContext & { network: string; analytics: string; ens: string; billing: string; }"

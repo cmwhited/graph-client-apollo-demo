@@ -1,0 +1,3356 @@
+schema {
+  query: Query
+  subscription: Subscription
+}
+
+"Marks the GraphQL type as indexable entity.  Each type that should be an entity is required to be annotated with this directive."
+directive @entity on OBJECT
+
+"Defined a Subgraph ID for an object type"
+directive @subgraphId(id: String!) on OBJECT
+
+"creates a virtual field on the entity that may be queried but cannot be set manually through the mappings API."
+directive @derivedFrom(field: String!) on FIELD_DEFINITION
+
+type ENS__AbiChanged implements ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  contentType: BigInt!
+}
+
+input ENS__AbiChanged_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  contentType: BigInt
+  contentType_not: BigInt
+  contentType_gt: BigInt
+  contentType_lt: BigInt
+  contentType_gte: BigInt
+  contentType_lte: BigInt
+  contentType_in: [BigInt!]
+  contentType_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__AbiChanged_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+  contentType
+}
+
+type ENS__Account {
+  id: ID!
+  domains(skip: Int = 0, first: Int = 100, orderBy: ENS__Domain_orderBy, orderDirection: ENS__OrderDirection, where: ENS__Domain_filter): [ENS__Domain!]!
+  registrations(skip: Int = 0, first: Int = 100, orderBy: ENS__Registration_orderBy, orderDirection: ENS__OrderDirection, where: ENS__Registration_filter): [ENS__Registration!]
+}
+
+input ENS__Account_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  domains_: ENS__Domain_filter
+  registrations_: ENS__Registration_filter
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__Account_orderBy {
+  id
+  domains
+  registrations
+}
+
+type ENS__AddrChanged implements ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  addr: ENS__Account!
+}
+
+input ENS__AddrChanged_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  addr: String
+  addr_not: String
+  addr_gt: String
+  addr_lt: String
+  addr_gte: String
+  addr_lte: String
+  addr_in: [String!]
+  addr_not_in: [String!]
+  addr_contains: String
+  addr_contains_nocase: String
+  addr_not_contains: String
+  addr_not_contains_nocase: String
+  addr_starts_with: String
+  addr_starts_with_nocase: String
+  addr_not_starts_with: String
+  addr_not_starts_with_nocase: String
+  addr_ends_with: String
+  addr_ends_with_nocase: String
+  addr_not_ends_with: String
+  addr_not_ends_with_nocase: String
+  addr_: ENS__Account_filter
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__AddrChanged_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+  addr
+}
+
+type ENS__AuthorisationChanged implements ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  owner: ENS__Bytes!
+  target: ENS__Bytes!
+  isAuthorized: Boolean!
+}
+
+input ENS__AuthorisationChanged_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  owner: ENS__Bytes
+  owner_not: ENS__Bytes
+  owner_gt: ENS__Bytes
+  owner_lt: ENS__Bytes
+  owner_gte: ENS__Bytes
+  owner_lte: ENS__Bytes
+  owner_in: [ENS__Bytes!]
+  owner_not_in: [ENS__Bytes!]
+  owner_contains: ENS__Bytes
+  owner_not_contains: ENS__Bytes
+  target: ENS__Bytes
+  target_not: ENS__Bytes
+  target_gt: ENS__Bytes
+  target_lt: ENS__Bytes
+  target_gte: ENS__Bytes
+  target_lte: ENS__Bytes
+  target_in: [ENS__Bytes!]
+  target_not_in: [ENS__Bytes!]
+  target_contains: ENS__Bytes
+  target_not_contains: ENS__Bytes
+  isAuthorized: Boolean
+  isAuthorized_not: Boolean
+  isAuthorized_in: [Boolean!]
+  isAuthorized_not_in: [Boolean!]
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__AuthorisationChanged_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+  owner
+  target
+  isAuthorized
+}
+
+scalar ENS__BigDecimal
+
+scalar BigInt
+
+input ENS__BlockChangedFilter {
+  number_gte: Int!
+}
+
+input ENS__Block_height {
+  hash: ENS__Bytes
+  number: Int
+  number_gte: Int
+}
+
+scalar ENS__Bytes
+
+type ENS__ContenthashChanged implements ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  hash: ENS__Bytes!
+}
+
+input ENS__ContenthashChanged_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  hash: ENS__Bytes
+  hash_not: ENS__Bytes
+  hash_gt: ENS__Bytes
+  hash_lt: ENS__Bytes
+  hash_gte: ENS__Bytes
+  hash_lte: ENS__Bytes
+  hash_in: [ENS__Bytes!]
+  hash_not_in: [ENS__Bytes!]
+  hash_contains: ENS__Bytes
+  hash_not_contains: ENS__Bytes
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__ContenthashChanged_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+  hash
+}
+
+type ENS__Domain {
+  id: ID!
+  name: String
+  labelName: String
+  labelhash: ENS__Bytes
+  parent: ENS__Domain
+  subdomains(skip: Int = 0, first: Int = 100, orderBy: ENS__Domain_orderBy, orderDirection: ENS__OrderDirection, where: ENS__Domain_filter): [ENS__Domain!]!
+  subdomainCount: Int!
+  resolvedAddress: ENS__Account
+  owner: ENS__Account!
+  resolver: ENS__Resolver
+  ttl: BigInt
+  isMigrated: Boolean!
+  createdAt: BigInt!
+  events(skip: Int = 0, first: Int = 100, orderBy: ENS__DomainEvent_orderBy, orderDirection: ENS__OrderDirection, where: ENS__DomainEvent_filter): [ENS__DomainEvent!]!
+}
+
+interface ENS__DomainEvent {
+  id: ID!
+  domain: ENS__Domain!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+}
+
+input ENS__DomainEvent_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  domain: String
+  domain_not: String
+  domain_gt: String
+  domain_lt: String
+  domain_gte: String
+  domain_lte: String
+  domain_in: [String!]
+  domain_not_in: [String!]
+  domain_contains: String
+  domain_contains_nocase: String
+  domain_not_contains: String
+  domain_not_contains_nocase: String
+  domain_starts_with: String
+  domain_starts_with_nocase: String
+  domain_not_starts_with: String
+  domain_not_starts_with_nocase: String
+  domain_ends_with: String
+  domain_ends_with_nocase: String
+  domain_not_ends_with: String
+  domain_not_ends_with_nocase: String
+  domain_: ENS__Domain_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__DomainEvent_orderBy {
+  id
+  domain
+  blockNumber
+  transactionID
+}
+
+input ENS__Domain_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  name: String
+  name_not: String
+  name_gt: String
+  name_lt: String
+  name_gte: String
+  name_lte: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_contains: String
+  name_contains_nocase: String
+  name_not_contains: String
+  name_not_contains_nocase: String
+  name_starts_with: String
+  name_starts_with_nocase: String
+  name_not_starts_with: String
+  name_not_starts_with_nocase: String
+  name_ends_with: String
+  name_ends_with_nocase: String
+  name_not_ends_with: String
+  name_not_ends_with_nocase: String
+  labelName: String
+  labelName_not: String
+  labelName_gt: String
+  labelName_lt: String
+  labelName_gte: String
+  labelName_lte: String
+  labelName_in: [String!]
+  labelName_not_in: [String!]
+  labelName_contains: String
+  labelName_contains_nocase: String
+  labelName_not_contains: String
+  labelName_not_contains_nocase: String
+  labelName_starts_with: String
+  labelName_starts_with_nocase: String
+  labelName_not_starts_with: String
+  labelName_not_starts_with_nocase: String
+  labelName_ends_with: String
+  labelName_ends_with_nocase: String
+  labelName_not_ends_with: String
+  labelName_not_ends_with_nocase: String
+  labelhash: ENS__Bytes
+  labelhash_not: ENS__Bytes
+  labelhash_gt: ENS__Bytes
+  labelhash_lt: ENS__Bytes
+  labelhash_gte: ENS__Bytes
+  labelhash_lte: ENS__Bytes
+  labelhash_in: [ENS__Bytes!]
+  labelhash_not_in: [ENS__Bytes!]
+  labelhash_contains: ENS__Bytes
+  labelhash_not_contains: ENS__Bytes
+  parent: String
+  parent_not: String
+  parent_gt: String
+  parent_lt: String
+  parent_gte: String
+  parent_lte: String
+  parent_in: [String!]
+  parent_not_in: [String!]
+  parent_contains: String
+  parent_contains_nocase: String
+  parent_not_contains: String
+  parent_not_contains_nocase: String
+  parent_starts_with: String
+  parent_starts_with_nocase: String
+  parent_not_starts_with: String
+  parent_not_starts_with_nocase: String
+  parent_ends_with: String
+  parent_ends_with_nocase: String
+  parent_not_ends_with: String
+  parent_not_ends_with_nocase: String
+  parent_: ENS__Domain_filter
+  subdomains_: ENS__Domain_filter
+  subdomainCount: Int
+  subdomainCount_not: Int
+  subdomainCount_gt: Int
+  subdomainCount_lt: Int
+  subdomainCount_gte: Int
+  subdomainCount_lte: Int
+  subdomainCount_in: [Int!]
+  subdomainCount_not_in: [Int!]
+  resolvedAddress: String
+  resolvedAddress_not: String
+  resolvedAddress_gt: String
+  resolvedAddress_lt: String
+  resolvedAddress_gte: String
+  resolvedAddress_lte: String
+  resolvedAddress_in: [String!]
+  resolvedAddress_not_in: [String!]
+  resolvedAddress_contains: String
+  resolvedAddress_contains_nocase: String
+  resolvedAddress_not_contains: String
+  resolvedAddress_not_contains_nocase: String
+  resolvedAddress_starts_with: String
+  resolvedAddress_starts_with_nocase: String
+  resolvedAddress_not_starts_with: String
+  resolvedAddress_not_starts_with_nocase: String
+  resolvedAddress_ends_with: String
+  resolvedAddress_ends_with_nocase: String
+  resolvedAddress_not_ends_with: String
+  resolvedAddress_not_ends_with_nocase: String
+  resolvedAddress_: ENS__Account_filter
+  owner: String
+  owner_not: String
+  owner_gt: String
+  owner_lt: String
+  owner_gte: String
+  owner_lte: String
+  owner_in: [String!]
+  owner_not_in: [String!]
+  owner_contains: String
+  owner_contains_nocase: String
+  owner_not_contains: String
+  owner_not_contains_nocase: String
+  owner_starts_with: String
+  owner_starts_with_nocase: String
+  owner_not_starts_with: String
+  owner_not_starts_with_nocase: String
+  owner_ends_with: String
+  owner_ends_with_nocase: String
+  owner_not_ends_with: String
+  owner_not_ends_with_nocase: String
+  owner_: ENS__Account_filter
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  ttl: BigInt
+  ttl_not: BigInt
+  ttl_gt: BigInt
+  ttl_lt: BigInt
+  ttl_gte: BigInt
+  ttl_lte: BigInt
+  ttl_in: [BigInt!]
+  ttl_not_in: [BigInt!]
+  isMigrated: Boolean
+  isMigrated_not: Boolean
+  isMigrated_in: [Boolean!]
+  isMigrated_not_in: [Boolean!]
+  createdAt: BigInt
+  createdAt_not: BigInt
+  createdAt_gt: BigInt
+  createdAt_lt: BigInt
+  createdAt_gte: BigInt
+  createdAt_lte: BigInt
+  createdAt_in: [BigInt!]
+  createdAt_not_in: [BigInt!]
+  events_: ENS__DomainEvent_filter
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__Domain_orderBy {
+  id
+  name
+  labelName
+  labelhash
+  parent
+  subdomains
+  subdomainCount
+  resolvedAddress
+  owner
+  resolver
+  ttl
+  isMigrated
+  createdAt
+  events
+}
+
+type ENS__InterfaceChanged implements ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  interfaceID: ENS__Bytes!
+  implementer: ENS__Bytes!
+}
+
+input ENS__InterfaceChanged_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  interfaceID: ENS__Bytes
+  interfaceID_not: ENS__Bytes
+  interfaceID_gt: ENS__Bytes
+  interfaceID_lt: ENS__Bytes
+  interfaceID_gte: ENS__Bytes
+  interfaceID_lte: ENS__Bytes
+  interfaceID_in: [ENS__Bytes!]
+  interfaceID_not_in: [ENS__Bytes!]
+  interfaceID_contains: ENS__Bytes
+  interfaceID_not_contains: ENS__Bytes
+  implementer: ENS__Bytes
+  implementer_not: ENS__Bytes
+  implementer_gt: ENS__Bytes
+  implementer_lt: ENS__Bytes
+  implementer_gte: ENS__Bytes
+  implementer_lte: ENS__Bytes
+  implementer_in: [ENS__Bytes!]
+  implementer_not_in: [ENS__Bytes!]
+  implementer_contains: ENS__Bytes
+  implementer_not_contains: ENS__Bytes
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__InterfaceChanged_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+  interfaceID
+  implementer
+}
+
+type ENS__MulticoinAddrChanged implements ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  coinType: BigInt!
+  addr: ENS__Bytes!
+}
+
+input ENS__MulticoinAddrChanged_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  coinType: BigInt
+  coinType_not: BigInt
+  coinType_gt: BigInt
+  coinType_lt: BigInt
+  coinType_gte: BigInt
+  coinType_lte: BigInt
+  coinType_in: [BigInt!]
+  coinType_not_in: [BigInt!]
+  addr: ENS__Bytes
+  addr_not: ENS__Bytes
+  addr_gt: ENS__Bytes
+  addr_lt: ENS__Bytes
+  addr_gte: ENS__Bytes
+  addr_lte: ENS__Bytes
+  addr_in: [ENS__Bytes!]
+  addr_not_in: [ENS__Bytes!]
+  addr_contains: ENS__Bytes
+  addr_not_contains: ENS__Bytes
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__MulticoinAddrChanged_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+  coinType
+  addr
+}
+
+type ENS__NameChanged implements ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  name: String!
+}
+
+input ENS__NameChanged_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  name: String
+  name_not: String
+  name_gt: String
+  name_lt: String
+  name_gte: String
+  name_lte: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_contains: String
+  name_contains_nocase: String
+  name_not_contains: String
+  name_not_contains_nocase: String
+  name_starts_with: String
+  name_starts_with_nocase: String
+  name_not_starts_with: String
+  name_not_starts_with_nocase: String
+  name_ends_with: String
+  name_ends_with_nocase: String
+  name_not_ends_with: String
+  name_not_ends_with_nocase: String
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__NameChanged_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+  name
+}
+
+type ENS__NameRegistered implements ENS__RegistrationEvent {
+  id: ID!
+  registration: ENS__Registration!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  registrant: ENS__Account!
+  expiryDate: BigInt!
+}
+
+input ENS__NameRegistered_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  registration: String
+  registration_not: String
+  registration_gt: String
+  registration_lt: String
+  registration_gte: String
+  registration_lte: String
+  registration_in: [String!]
+  registration_not_in: [String!]
+  registration_contains: String
+  registration_contains_nocase: String
+  registration_not_contains: String
+  registration_not_contains_nocase: String
+  registration_starts_with: String
+  registration_starts_with_nocase: String
+  registration_not_starts_with: String
+  registration_not_starts_with_nocase: String
+  registration_ends_with: String
+  registration_ends_with_nocase: String
+  registration_not_ends_with: String
+  registration_not_ends_with_nocase: String
+  registration_: ENS__Registration_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  registrant: String
+  registrant_not: String
+  registrant_gt: String
+  registrant_lt: String
+  registrant_gte: String
+  registrant_lte: String
+  registrant_in: [String!]
+  registrant_not_in: [String!]
+  registrant_contains: String
+  registrant_contains_nocase: String
+  registrant_not_contains: String
+  registrant_not_contains_nocase: String
+  registrant_starts_with: String
+  registrant_starts_with_nocase: String
+  registrant_not_starts_with: String
+  registrant_not_starts_with_nocase: String
+  registrant_ends_with: String
+  registrant_ends_with_nocase: String
+  registrant_not_ends_with: String
+  registrant_not_ends_with_nocase: String
+  registrant_: ENS__Account_filter
+  expiryDate: BigInt
+  expiryDate_not: BigInt
+  expiryDate_gt: BigInt
+  expiryDate_lt: BigInt
+  expiryDate_gte: BigInt
+  expiryDate_lte: BigInt
+  expiryDate_in: [BigInt!]
+  expiryDate_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__NameRegistered_orderBy {
+  id
+  registration
+  blockNumber
+  transactionID
+  registrant
+  expiryDate
+}
+
+type ENS__NameRenewed implements ENS__RegistrationEvent {
+  id: ID!
+  registration: ENS__Registration!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  expiryDate: BigInt!
+}
+
+input ENS__NameRenewed_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  registration: String
+  registration_not: String
+  registration_gt: String
+  registration_lt: String
+  registration_gte: String
+  registration_lte: String
+  registration_in: [String!]
+  registration_not_in: [String!]
+  registration_contains: String
+  registration_contains_nocase: String
+  registration_not_contains: String
+  registration_not_contains_nocase: String
+  registration_starts_with: String
+  registration_starts_with_nocase: String
+  registration_not_starts_with: String
+  registration_not_starts_with_nocase: String
+  registration_ends_with: String
+  registration_ends_with_nocase: String
+  registration_not_ends_with: String
+  registration_not_ends_with_nocase: String
+  registration_: ENS__Registration_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  expiryDate: BigInt
+  expiryDate_not: BigInt
+  expiryDate_gt: BigInt
+  expiryDate_lt: BigInt
+  expiryDate_gte: BigInt
+  expiryDate_lte: BigInt
+  expiryDate_in: [BigInt!]
+  expiryDate_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__NameRenewed_orderBy {
+  id
+  registration
+  blockNumber
+  transactionID
+  expiryDate
+}
+
+type ENS__NameTransferred implements ENS__RegistrationEvent {
+  id: ID!
+  registration: ENS__Registration!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  newOwner: ENS__Account!
+}
+
+input ENS__NameTransferred_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  registration: String
+  registration_not: String
+  registration_gt: String
+  registration_lt: String
+  registration_gte: String
+  registration_lte: String
+  registration_in: [String!]
+  registration_not_in: [String!]
+  registration_contains: String
+  registration_contains_nocase: String
+  registration_not_contains: String
+  registration_not_contains_nocase: String
+  registration_starts_with: String
+  registration_starts_with_nocase: String
+  registration_not_starts_with: String
+  registration_not_starts_with_nocase: String
+  registration_ends_with: String
+  registration_ends_with_nocase: String
+  registration_not_ends_with: String
+  registration_not_ends_with_nocase: String
+  registration_: ENS__Registration_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  newOwner: String
+  newOwner_not: String
+  newOwner_gt: String
+  newOwner_lt: String
+  newOwner_gte: String
+  newOwner_lte: String
+  newOwner_in: [String!]
+  newOwner_not_in: [String!]
+  newOwner_contains: String
+  newOwner_contains_nocase: String
+  newOwner_not_contains: String
+  newOwner_not_contains_nocase: String
+  newOwner_starts_with: String
+  newOwner_starts_with_nocase: String
+  newOwner_not_starts_with: String
+  newOwner_not_starts_with_nocase: String
+  newOwner_ends_with: String
+  newOwner_ends_with_nocase: String
+  newOwner_not_ends_with: String
+  newOwner_not_ends_with_nocase: String
+  newOwner_: ENS__Account_filter
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__NameTransferred_orderBy {
+  id
+  registration
+  blockNumber
+  transactionID
+  newOwner
+}
+
+type ENS__NewOwner implements ENS__DomainEvent {
+  id: ID!
+  parentDomain: ENS__Domain!
+  domain: ENS__Domain!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  owner: ENS__Account!
+}
+
+input ENS__NewOwner_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  parentDomain: String
+  parentDomain_not: String
+  parentDomain_gt: String
+  parentDomain_lt: String
+  parentDomain_gte: String
+  parentDomain_lte: String
+  parentDomain_in: [String!]
+  parentDomain_not_in: [String!]
+  parentDomain_contains: String
+  parentDomain_contains_nocase: String
+  parentDomain_not_contains: String
+  parentDomain_not_contains_nocase: String
+  parentDomain_starts_with: String
+  parentDomain_starts_with_nocase: String
+  parentDomain_not_starts_with: String
+  parentDomain_not_starts_with_nocase: String
+  parentDomain_ends_with: String
+  parentDomain_ends_with_nocase: String
+  parentDomain_not_ends_with: String
+  parentDomain_not_ends_with_nocase: String
+  parentDomain_: ENS__Domain_filter
+  domain: String
+  domain_not: String
+  domain_gt: String
+  domain_lt: String
+  domain_gte: String
+  domain_lte: String
+  domain_in: [String!]
+  domain_not_in: [String!]
+  domain_contains: String
+  domain_contains_nocase: String
+  domain_not_contains: String
+  domain_not_contains_nocase: String
+  domain_starts_with: String
+  domain_starts_with_nocase: String
+  domain_not_starts_with: String
+  domain_not_starts_with_nocase: String
+  domain_ends_with: String
+  domain_ends_with_nocase: String
+  domain_not_ends_with: String
+  domain_not_ends_with_nocase: String
+  domain_: ENS__Domain_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  owner: String
+  owner_not: String
+  owner_gt: String
+  owner_lt: String
+  owner_gte: String
+  owner_lte: String
+  owner_in: [String!]
+  owner_not_in: [String!]
+  owner_contains: String
+  owner_contains_nocase: String
+  owner_not_contains: String
+  owner_not_contains_nocase: String
+  owner_starts_with: String
+  owner_starts_with_nocase: String
+  owner_not_starts_with: String
+  owner_not_starts_with_nocase: String
+  owner_ends_with: String
+  owner_ends_with_nocase: String
+  owner_not_ends_with: String
+  owner_not_ends_with_nocase: String
+  owner_: ENS__Account_filter
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__NewOwner_orderBy {
+  id
+  parentDomain
+  domain
+  blockNumber
+  transactionID
+  owner
+}
+
+type ENS__NewResolver implements ENS__DomainEvent {
+  id: ID!
+  domain: ENS__Domain!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  resolver: ENS__Resolver!
+}
+
+input ENS__NewResolver_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  domain: String
+  domain_not: String
+  domain_gt: String
+  domain_lt: String
+  domain_gte: String
+  domain_lte: String
+  domain_in: [String!]
+  domain_not_in: [String!]
+  domain_contains: String
+  domain_contains_nocase: String
+  domain_not_contains: String
+  domain_not_contains_nocase: String
+  domain_starts_with: String
+  domain_starts_with_nocase: String
+  domain_not_starts_with: String
+  domain_not_starts_with_nocase: String
+  domain_ends_with: String
+  domain_ends_with_nocase: String
+  domain_not_ends_with: String
+  domain_not_ends_with_nocase: String
+  domain_: ENS__Domain_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__NewResolver_orderBy {
+  id
+  domain
+  blockNumber
+  transactionID
+  resolver
+}
+
+type ENS__NewTTL implements ENS__DomainEvent {
+  id: ID!
+  domain: ENS__Domain!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  ttl: BigInt!
+}
+
+input ENS__NewTTL_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  domain: String
+  domain_not: String
+  domain_gt: String
+  domain_lt: String
+  domain_gte: String
+  domain_lte: String
+  domain_in: [String!]
+  domain_not_in: [String!]
+  domain_contains: String
+  domain_contains_nocase: String
+  domain_not_contains: String
+  domain_not_contains_nocase: String
+  domain_starts_with: String
+  domain_starts_with_nocase: String
+  domain_not_starts_with: String
+  domain_not_starts_with_nocase: String
+  domain_ends_with: String
+  domain_ends_with_nocase: String
+  domain_not_ends_with: String
+  domain_not_ends_with_nocase: String
+  domain_: ENS__Domain_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  ttl: BigInt
+  ttl_not: BigInt
+  ttl_gt: BigInt
+  ttl_lt: BigInt
+  ttl_gte: BigInt
+  ttl_lte: BigInt
+  ttl_in: [BigInt!]
+  ttl_not_in: [BigInt!]
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__NewTTL_orderBy {
+  id
+  domain
+  blockNumber
+  transactionID
+  ttl
+}
+
+"""Defines the order direction, either ascending or descending"""
+enum ENS__OrderDirection {
+  asc
+  desc
+}
+
+type ENS__PubkeyChanged implements ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  x: ENS__Bytes!
+  y: ENS__Bytes!
+}
+
+input ENS__PubkeyChanged_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  x: ENS__Bytes
+  x_not: ENS__Bytes
+  x_gt: ENS__Bytes
+  x_lt: ENS__Bytes
+  x_gte: ENS__Bytes
+  x_lte: ENS__Bytes
+  x_in: [ENS__Bytes!]
+  x_not_in: [ENS__Bytes!]
+  x_contains: ENS__Bytes
+  x_not_contains: ENS__Bytes
+  y: ENS__Bytes
+  y_not: ENS__Bytes
+  y_gt: ENS__Bytes
+  y_lt: ENS__Bytes
+  y_gte: ENS__Bytes
+  y_lte: ENS__Bytes
+  y_in: [ENS__Bytes!]
+  y_not_in: [ENS__Bytes!]
+  y_contains: ENS__Bytes
+  y_not_contains: ENS__Bytes
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__PubkeyChanged_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+  x
+  y
+}
+
+type Query {
+  ENS__domain(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Domain
+  ENS__domains(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Domain_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Domain_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Domain!]!
+  ENS__transfer(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Transfer
+  ENS__transfers(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Transfer_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Transfer_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Transfer!]!
+  ENS__newOwner(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NewOwner
+  ENS__newOwners(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NewOwner_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NewOwner_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NewOwner!]!
+  ENS__newResolver(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NewResolver
+  ENS__newResolvers(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NewResolver_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NewResolver_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NewResolver!]!
+  ENS__newTTL(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NewTTL
+  ENS__newTTLs(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NewTTL_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NewTTL_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NewTTL!]!
+  ENS__account(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Account
+  ENS__accounts(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Account_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Account_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Account!]!
+  ENS__registration(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Registration
+  ENS__registrations(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Registration_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Registration_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Registration!]!
+  ENS__nameRegistered(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NameRegistered
+  ENS__nameRegistereds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NameRegistered_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NameRegistered_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NameRegistered!]!
+  ENS__nameRenewed(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NameRenewed
+  ENS__nameReneweds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NameRenewed_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NameRenewed_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NameRenewed!]!
+  ENS__nameTransferred(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NameTransferred
+  ENS__nameTransferreds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NameTransferred_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NameTransferred_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NameTransferred!]!
+  ENS__resolver(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Resolver
+  ENS__resolvers(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Resolver_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Resolver_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Resolver!]!
+  ENS__addrChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__AddrChanged
+  ENS__addrChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__AddrChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__AddrChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__AddrChanged!]!
+  ENS__multicoinAddrChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__MulticoinAddrChanged
+  ENS__multicoinAddrChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__MulticoinAddrChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__MulticoinAddrChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__MulticoinAddrChanged!]!
+  ENS__nameChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NameChanged
+  ENS__nameChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NameChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NameChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NameChanged!]!
+  ENS__abiChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__AbiChanged
+  ENS__abiChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__AbiChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__AbiChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__AbiChanged!]!
+  ENS__pubkeyChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__PubkeyChanged
+  ENS__pubkeyChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__PubkeyChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__PubkeyChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__PubkeyChanged!]!
+  ENS__textChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__TextChanged
+  ENS__textChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__TextChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__TextChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__TextChanged!]!
+  ENS__contenthashChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__ContenthashChanged
+  ENS__contenthashChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__ContenthashChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__ContenthashChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__ContenthashChanged!]!
+  ENS__interfaceChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__InterfaceChanged
+  ENS__interfaceChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__InterfaceChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__InterfaceChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__InterfaceChanged!]!
+  ENS__authorisationChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__AuthorisationChanged
+  ENS__authorisationChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__AuthorisationChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__AuthorisationChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__AuthorisationChanged!]!
+  ENS__domainEvent(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__DomainEvent
+  ENS__domainEvents(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__DomainEvent_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__DomainEvent_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__DomainEvent!]!
+  ENS__registrationEvent(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__RegistrationEvent
+  ENS__registrationEvents(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__RegistrationEvent_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__RegistrationEvent_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__RegistrationEvent!]!
+  ENS__resolverEvent(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__ResolverEvent
+  ENS__resolverEvents(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__ResolverEvent_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__ResolverEvent_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__ResolverEvent!]!
+  """Access to subgraph metadata"""
+  ENS___meta(block: ENS__Block_height): ENS___Meta_
+}
+
+type ENS__Registration {
+  id: ID!
+  domain: ENS__Domain
+  registrationDate: BigInt!
+  expiryDate: BigInt!
+  cost: BigInt
+  registrant: ENS__Account!
+  labelName: String
+  events(skip: Int = 0, first: Int = 100, orderBy: ENS__RegistrationEvent_orderBy, orderDirection: ENS__OrderDirection, where: ENS__RegistrationEvent_filter): [ENS__RegistrationEvent!]!
+}
+
+interface ENS__RegistrationEvent {
+  id: ID!
+  registration: ENS__Registration!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+}
+
+input ENS__RegistrationEvent_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  registration: String
+  registration_not: String
+  registration_gt: String
+  registration_lt: String
+  registration_gte: String
+  registration_lte: String
+  registration_in: [String!]
+  registration_not_in: [String!]
+  registration_contains: String
+  registration_contains_nocase: String
+  registration_not_contains: String
+  registration_not_contains_nocase: String
+  registration_starts_with: String
+  registration_starts_with_nocase: String
+  registration_not_starts_with: String
+  registration_not_starts_with_nocase: String
+  registration_ends_with: String
+  registration_ends_with_nocase: String
+  registration_not_ends_with: String
+  registration_not_ends_with_nocase: String
+  registration_: ENS__Registration_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__RegistrationEvent_orderBy {
+  id
+  registration
+  blockNumber
+  transactionID
+}
+
+input ENS__Registration_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  domain: String
+  domain_not: String
+  domain_gt: String
+  domain_lt: String
+  domain_gte: String
+  domain_lte: String
+  domain_in: [String!]
+  domain_not_in: [String!]
+  domain_contains: String
+  domain_contains_nocase: String
+  domain_not_contains: String
+  domain_not_contains_nocase: String
+  domain_starts_with: String
+  domain_starts_with_nocase: String
+  domain_not_starts_with: String
+  domain_not_starts_with_nocase: String
+  domain_ends_with: String
+  domain_ends_with_nocase: String
+  domain_not_ends_with: String
+  domain_not_ends_with_nocase: String
+  domain_: ENS__Domain_filter
+  registrationDate: BigInt
+  registrationDate_not: BigInt
+  registrationDate_gt: BigInt
+  registrationDate_lt: BigInt
+  registrationDate_gte: BigInt
+  registrationDate_lte: BigInt
+  registrationDate_in: [BigInt!]
+  registrationDate_not_in: [BigInt!]
+  expiryDate: BigInt
+  expiryDate_not: BigInt
+  expiryDate_gt: BigInt
+  expiryDate_lt: BigInt
+  expiryDate_gte: BigInt
+  expiryDate_lte: BigInt
+  expiryDate_in: [BigInt!]
+  expiryDate_not_in: [BigInt!]
+  cost: BigInt
+  cost_not: BigInt
+  cost_gt: BigInt
+  cost_lt: BigInt
+  cost_gte: BigInt
+  cost_lte: BigInt
+  cost_in: [BigInt!]
+  cost_not_in: [BigInt!]
+  registrant: String
+  registrant_not: String
+  registrant_gt: String
+  registrant_lt: String
+  registrant_gte: String
+  registrant_lte: String
+  registrant_in: [String!]
+  registrant_not_in: [String!]
+  registrant_contains: String
+  registrant_contains_nocase: String
+  registrant_not_contains: String
+  registrant_not_contains_nocase: String
+  registrant_starts_with: String
+  registrant_starts_with_nocase: String
+  registrant_not_starts_with: String
+  registrant_not_starts_with_nocase: String
+  registrant_ends_with: String
+  registrant_ends_with_nocase: String
+  registrant_not_ends_with: String
+  registrant_not_ends_with_nocase: String
+  registrant_: ENS__Account_filter
+  labelName: String
+  labelName_not: String
+  labelName_gt: String
+  labelName_lt: String
+  labelName_gte: String
+  labelName_lte: String
+  labelName_in: [String!]
+  labelName_not_in: [String!]
+  labelName_contains: String
+  labelName_contains_nocase: String
+  labelName_not_contains: String
+  labelName_not_contains_nocase: String
+  labelName_starts_with: String
+  labelName_starts_with_nocase: String
+  labelName_not_starts_with: String
+  labelName_not_starts_with_nocase: String
+  labelName_ends_with: String
+  labelName_ends_with_nocase: String
+  labelName_not_ends_with: String
+  labelName_not_ends_with_nocase: String
+  events_: ENS__RegistrationEvent_filter
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__Registration_orderBy {
+  id
+  domain
+  registrationDate
+  expiryDate
+  cost
+  registrant
+  labelName
+  events
+}
+
+type ENS__Resolver {
+  id: ID!
+  domain: ENS__Domain
+  address: ENS__Bytes!
+  addr: ENS__Account
+  contentHash: ENS__Bytes
+  texts: [String!]
+  coinTypes: [BigInt!]
+  events(skip: Int = 0, first: Int = 100, orderBy: ENS__ResolverEvent_orderBy, orderDirection: ENS__OrderDirection, where: ENS__ResolverEvent_filter): [ENS__ResolverEvent!]!
+}
+
+interface ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+}
+
+input ENS__ResolverEvent_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__ResolverEvent_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+}
+
+input ENS__Resolver_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  domain: String
+  domain_not: String
+  domain_gt: String
+  domain_lt: String
+  domain_gte: String
+  domain_lte: String
+  domain_in: [String!]
+  domain_not_in: [String!]
+  domain_contains: String
+  domain_contains_nocase: String
+  domain_not_contains: String
+  domain_not_contains_nocase: String
+  domain_starts_with: String
+  domain_starts_with_nocase: String
+  domain_not_starts_with: String
+  domain_not_starts_with_nocase: String
+  domain_ends_with: String
+  domain_ends_with_nocase: String
+  domain_not_ends_with: String
+  domain_not_ends_with_nocase: String
+  domain_: ENS__Domain_filter
+  address: ENS__Bytes
+  address_not: ENS__Bytes
+  address_gt: ENS__Bytes
+  address_lt: ENS__Bytes
+  address_gte: ENS__Bytes
+  address_lte: ENS__Bytes
+  address_in: [ENS__Bytes!]
+  address_not_in: [ENS__Bytes!]
+  address_contains: ENS__Bytes
+  address_not_contains: ENS__Bytes
+  addr: String
+  addr_not: String
+  addr_gt: String
+  addr_lt: String
+  addr_gte: String
+  addr_lte: String
+  addr_in: [String!]
+  addr_not_in: [String!]
+  addr_contains: String
+  addr_contains_nocase: String
+  addr_not_contains: String
+  addr_not_contains_nocase: String
+  addr_starts_with: String
+  addr_starts_with_nocase: String
+  addr_not_starts_with: String
+  addr_not_starts_with_nocase: String
+  addr_ends_with: String
+  addr_ends_with_nocase: String
+  addr_not_ends_with: String
+  addr_not_ends_with_nocase: String
+  addr_: ENS__Account_filter
+  contentHash: ENS__Bytes
+  contentHash_not: ENS__Bytes
+  contentHash_gt: ENS__Bytes
+  contentHash_lt: ENS__Bytes
+  contentHash_gte: ENS__Bytes
+  contentHash_lte: ENS__Bytes
+  contentHash_in: [ENS__Bytes!]
+  contentHash_not_in: [ENS__Bytes!]
+  contentHash_contains: ENS__Bytes
+  contentHash_not_contains: ENS__Bytes
+  texts: [String!]
+  texts_not: [String!]
+  texts_contains: [String!]
+  texts_contains_nocase: [String!]
+  texts_not_contains: [String!]
+  texts_not_contains_nocase: [String!]
+  coinTypes: [BigInt!]
+  coinTypes_not: [BigInt!]
+  coinTypes_contains: [BigInt!]
+  coinTypes_contains_nocase: [BigInt!]
+  coinTypes_not_contains: [BigInt!]
+  coinTypes_not_contains_nocase: [BigInt!]
+  events_: ENS__ResolverEvent_filter
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__Resolver_orderBy {
+  id
+  domain
+  address
+  addr
+  contentHash
+  texts
+  coinTypes
+  events
+}
+
+type Subscription {
+  ENS__domain(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Domain
+  ENS__domains(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Domain_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Domain_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Domain!]!
+  ENS__transfer(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Transfer
+  ENS__transfers(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Transfer_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Transfer_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Transfer!]!
+  ENS__newOwner(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NewOwner
+  ENS__newOwners(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NewOwner_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NewOwner_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NewOwner!]!
+  ENS__newResolver(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NewResolver
+  ENS__newResolvers(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NewResolver_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NewResolver_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NewResolver!]!
+  ENS__newTTL(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NewTTL
+  ENS__newTTLs(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NewTTL_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NewTTL_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NewTTL!]!
+  ENS__account(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Account
+  ENS__accounts(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Account_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Account_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Account!]!
+  ENS__registration(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Registration
+  ENS__registrations(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Registration_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Registration_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Registration!]!
+  ENS__nameRegistered(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NameRegistered
+  ENS__nameRegistereds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NameRegistered_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NameRegistered_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NameRegistered!]!
+  ENS__nameRenewed(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NameRenewed
+  ENS__nameReneweds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NameRenewed_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NameRenewed_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NameRenewed!]!
+  ENS__nameTransferred(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NameTransferred
+  ENS__nameTransferreds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NameTransferred_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NameTransferred_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NameTransferred!]!
+  ENS__resolver(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__Resolver
+  ENS__resolvers(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__Resolver_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__Resolver_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__Resolver!]!
+  ENS__addrChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__AddrChanged
+  ENS__addrChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__AddrChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__AddrChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__AddrChanged!]!
+  ENS__multicoinAddrChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__MulticoinAddrChanged
+  ENS__multicoinAddrChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__MulticoinAddrChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__MulticoinAddrChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__MulticoinAddrChanged!]!
+  ENS__nameChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__NameChanged
+  ENS__nameChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__NameChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__NameChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__NameChanged!]!
+  ENS__abiChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__AbiChanged
+  ENS__abiChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__AbiChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__AbiChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__AbiChanged!]!
+  ENS__pubkeyChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__PubkeyChanged
+  ENS__pubkeyChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__PubkeyChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__PubkeyChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__PubkeyChanged!]!
+  ENS__textChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__TextChanged
+  ENS__textChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__TextChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__TextChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__TextChanged!]!
+  ENS__contenthashChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__ContenthashChanged
+  ENS__contenthashChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__ContenthashChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__ContenthashChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__ContenthashChanged!]!
+  ENS__interfaceChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__InterfaceChanged
+  ENS__interfaceChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__InterfaceChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__InterfaceChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__InterfaceChanged!]!
+  ENS__authorisationChanged(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__AuthorisationChanged
+  ENS__authorisationChangeds(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__AuthorisationChanged_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__AuthorisationChanged_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__AuthorisationChanged!]!
+  ENS__domainEvent(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__DomainEvent
+  ENS__domainEvents(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__DomainEvent_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__DomainEvent_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__DomainEvent!]!
+  ENS__registrationEvent(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__RegistrationEvent
+  ENS__registrationEvents(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__RegistrationEvent_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__RegistrationEvent_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__RegistrationEvent!]!
+  ENS__resolverEvent(
+    id: ID!
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): ENS__ResolverEvent
+  ENS__resolverEvents(
+    skip: Int = 0
+    first: Int = 100
+    orderBy: ENS__ResolverEvent_orderBy
+    orderDirection: ENS__OrderDirection
+    where: ENS__ResolverEvent_filter
+    """
+    The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.
+    """
+    block: ENS__Block_height
+    """
+    Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.
+    """
+    subgraphError: ENS___SubgraphErrorPolicy_! = deny
+  ): [ENS__ResolverEvent!]!
+  """Access to subgraph metadata"""
+  ENS___meta(block: ENS__Block_height): ENS___Meta_
+}
+
+type ENS__TextChanged implements ENS__ResolverEvent {
+  id: ID!
+  resolver: ENS__Resolver!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  key: String!
+}
+
+input ENS__TextChanged_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  resolver: String
+  resolver_not: String
+  resolver_gt: String
+  resolver_lt: String
+  resolver_gte: String
+  resolver_lte: String
+  resolver_in: [String!]
+  resolver_not_in: [String!]
+  resolver_contains: String
+  resolver_contains_nocase: String
+  resolver_not_contains: String
+  resolver_not_contains_nocase: String
+  resolver_starts_with: String
+  resolver_starts_with_nocase: String
+  resolver_not_starts_with: String
+  resolver_not_starts_with_nocase: String
+  resolver_ends_with: String
+  resolver_ends_with_nocase: String
+  resolver_not_ends_with: String
+  resolver_not_ends_with_nocase: String
+  resolver_: ENS__Resolver_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  key: String
+  key_not: String
+  key_gt: String
+  key_lt: String
+  key_gte: String
+  key_lte: String
+  key_in: [String!]
+  key_not_in: [String!]
+  key_contains: String
+  key_contains_nocase: String
+  key_not_contains: String
+  key_not_contains_nocase: String
+  key_starts_with: String
+  key_starts_with_nocase: String
+  key_not_starts_with: String
+  key_not_starts_with_nocase: String
+  key_ends_with: String
+  key_ends_with_nocase: String
+  key_not_ends_with: String
+  key_not_ends_with_nocase: String
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__TextChanged_orderBy {
+  id
+  resolver
+  blockNumber
+  transactionID
+  key
+}
+
+type ENS__Transfer implements ENS__DomainEvent {
+  id: ID!
+  domain: ENS__Domain!
+  blockNumber: Int!
+  transactionID: ENS__Bytes!
+  owner: ENS__Account!
+}
+
+input ENS__Transfer_filter {
+  id: ID
+  id_not: ID
+  id_gt: ID
+  id_lt: ID
+  id_gte: ID
+  id_lte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  domain: String
+  domain_not: String
+  domain_gt: String
+  domain_lt: String
+  domain_gte: String
+  domain_lte: String
+  domain_in: [String!]
+  domain_not_in: [String!]
+  domain_contains: String
+  domain_contains_nocase: String
+  domain_not_contains: String
+  domain_not_contains_nocase: String
+  domain_starts_with: String
+  domain_starts_with_nocase: String
+  domain_not_starts_with: String
+  domain_not_starts_with_nocase: String
+  domain_ends_with: String
+  domain_ends_with_nocase: String
+  domain_not_ends_with: String
+  domain_not_ends_with_nocase: String
+  domain_: ENS__Domain_filter
+  blockNumber: Int
+  blockNumber_not: Int
+  blockNumber_gt: Int
+  blockNumber_lt: Int
+  blockNumber_gte: Int
+  blockNumber_lte: Int
+  blockNumber_in: [Int!]
+  blockNumber_not_in: [Int!]
+  transactionID: ENS__Bytes
+  transactionID_not: ENS__Bytes
+  transactionID_gt: ENS__Bytes
+  transactionID_lt: ENS__Bytes
+  transactionID_gte: ENS__Bytes
+  transactionID_lte: ENS__Bytes
+  transactionID_in: [ENS__Bytes!]
+  transactionID_not_in: [ENS__Bytes!]
+  transactionID_contains: ENS__Bytes
+  transactionID_not_contains: ENS__Bytes
+  owner: String
+  owner_not: String
+  owner_gt: String
+  owner_lt: String
+  owner_gte: String
+  owner_lte: String
+  owner_in: [String!]
+  owner_not_in: [String!]
+  owner_contains: String
+  owner_contains_nocase: String
+  owner_not_contains: String
+  owner_not_contains_nocase: String
+  owner_starts_with: String
+  owner_starts_with_nocase: String
+  owner_not_starts_with: String
+  owner_not_starts_with_nocase: String
+  owner_ends_with: String
+  owner_ends_with_nocase: String
+  owner_not_ends_with: String
+  owner_not_ends_with_nocase: String
+  owner_: ENS__Account_filter
+  """Filter for the block changed event."""
+  _change_block: ENS__BlockChangedFilter
+}
+
+enum ENS__Transfer_orderBy {
+  id
+  domain
+  blockNumber
+  transactionID
+  owner
+}
+
+type ENS___Block_ {
+  """The hash of the block"""
+  hash: ENS__Bytes
+  """The block number"""
+  number: Int!
+  """Integer representation of the timestamp stored in blocks for the chain"""
+  timestamp: Int
+}
+
+"""The type for the top-level _meta field"""
+type ENS___Meta_ {
+  """
+  Information about a specific subgraph block. The hash of the block
+  will be null if the _meta field has a block constraint that asks for
+  a block number. It will be filled if the _meta field has no block constraint
+  and therefore asks for the latest  block
+  
+  """
+  block: ENS___Block_!
+  """The deployment ID"""
+  deployment: String!
+  """If `true`, the subgraph encountered indexing errors at some past block"""
+  hasIndexingErrors: Boolean!
+}
+
+enum ENS___SubgraphErrorPolicy_ {
+  """Data will be returned even if the subgraph has indexing errors"""
+  allow
+  """
+  If the subgraph has indexing errors, data will be omitted. The default.
+  """
+  deny
+}
